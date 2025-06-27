@@ -3,591 +3,533 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Safari Itinerary Quotation</title>
+    <title>SAFARI ITINERARY QUOTATION</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        /* Reset and Base Styles */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        :root {
+            --primary: #e67e22;
+            --secondary: #2c3e50;
+            --accent: #3498db;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --text: #333;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
         body {
-            line-height: 1.6;
-            color: #333;
-            background-color: #f9f9f9;
-        }
-        
-        img {
-            max-width: 100%;
-            height: auto;
-        }
-        
-        /* Header Styles */
-        .header {
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1516426122078-c23e76319801?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, rgba(236, 240, 241, 0.8), rgba(189, 195, 199, 0.6)), url('https://images.unsplash.com/photo-1509316785289-025f5b846b35?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
             background-size: cover;
-            background-position: center;
-            color: white;
-            padding: 2rem;
+            background-attachment: fixed;
+            color: var(--text);
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .quotation-container {
+            max-width: 1000px;
+            margin: 30px auto;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            transform: translateY(20px);
+            opacity: 0;
+            animation: fadeInUp 0.8s forwards 0.3s;
+            transition: var(--transition);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        @keyframes fadeInUp {
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+        
+        h1 {
             text-align: center;
+            margin-bottom: 25px;
+            color: var(--secondary);
+            font-size: 32px;
+            font-weight: 700;
             position: relative;
+            padding-bottom: 15px;
+            animation: textGlow 2s infinite alternate;
         }
         
-        .header-content {
-            max-width: 1200px;
-            margin: 0 auto;
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 3px;
         }
         
-        .logo {
-            max-width: 200px;
-            margin-bottom: 1rem;
+        @keyframes textGlow {
+            from {
+                text-shadow: 0 0 5px rgba(230, 126, 34, 0.3);
+            }
+            to {
+                text-shadow: 0 0 10px rgba(230, 126, 34, 0.6);
+            }
         }
         
-        .header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
+        .intro {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 16px;
+            color: var(--dark);
+            line-height: 1.8;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.7);
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: var(--transition);
         }
         
-        .header p {
-            font-size: 1.2rem;
-            max-width: 800px;
-            margin: 0 auto 1.5rem;
+        .intro:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
         
-        /* Navigation */
-        .nav {
-            background-color: #2c3e50;
-            padding: 1rem;
-            position: sticky;
-            top: 0;
-            z-index: 100;
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 40px;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
         }
         
-        .nav-list {
-            display: flex;
-            justify-content: center;
-            list-style: none;
-            flex-wrap: wrap;
+        table:hover {
+            transform: scale(1.005);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
         }
         
-        .nav-item {
-            margin: 0 1rem;
+        th, td {
+            padding: 18px 20px;
+            text-align: left;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
         }
         
-        .nav-link {
+        th {
+            background: linear-gradient(135deg, var(--secondary), var(--dark));
             color: white;
-            text-decoration: none;
             font-weight: 500;
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
-            transition: background-color 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 14px;
         }
         
-        .nav-link:hover {
-            background-color: #34495e;
+        tr:nth-child(even) {
+            background-color: rgba(236, 240, 241, 0.5);
         }
         
-        /* Main Content */
-        .container {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 1rem;
+        tr:hover td {
+            background-color: rgba(230, 126, 34, 0.1);
+            transform: translateX(5px);
         }
         
-        .section {
-            background-color: white;
+        h2 {
+            margin: 25px 0 15px;
+            font-size: 22px;
+            color: var(--secondary);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+        }
+        
+        h2 i {
+            margin-right: 10px;
+            color: var(--primary);
+        }
+        
+        .day-section {
+            margin-bottom: 25px;
+            padding: 15px;
             border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            padding: 2rem;
-            margin-bottom: 2rem;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(5px);
+            border-left: 4px solid var(--primary);
+            transition: var(--transition);
         }
         
-        .section-title {
-            color: #2c3e50;
-            margin-bottom: 1.5rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 2px solid #e67e22;
-        }
-        
-        /* Itinerary Day */
-        .day {
-            margin-bottom: 2rem;
-            border-left: 4px solid #e67e22;
-            padding-left: 1rem;
+        .day-section:hover {
+            transform: translateX(10px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
         
         .day-title {
-            color: #e67e22;
-            margin-bottom: 0.5rem;
-            font-size: 1.5rem;
-        }
-        
-        .day-description {
-            margin-bottom: 1.5rem;
-        }
-        
-        /* Activity Components */
-        .activity {
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--primary);
+            font-size: 18px;
             display: flex;
-            flex-wrap: wrap;
-            margin-bottom: 1.5rem;
-            align-items: flex-start;
+            align-items: center;
         }
         
-        .activity-image {
-            flex: 0 0 300px;
-            margin-right: 1.5rem;
-            border-radius: 4px;
-            overflow: hidden;
+        .day-title i {
+            margin-right: 8px;
         }
         
-        .activity-content {
-            flex: 1;
-            min-width: 300px;
+        ul {
+            list-style-type: none;
+            padding-left: 5px;
         }
         
-        .activity-title {
-            color: #2c3e50;
-            margin-bottom: 0.5rem;
+        li {
+            margin-bottom: 8px;
+            position: relative;
+            padding-left: 25px;
+            transition: var(--transition);
         }
         
-        .activity-type {
-            display: inline-block;
-            background-color: #e67e22;
-            color: white;
-            padding: 0.2rem 0.8rem;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            margin-bottom: 0.5rem;
+        li:hover {
+            color: var(--primary);
+            transform: translateX(5px);
         }
         
-        /* Price Table */
-        .price-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 1.5rem 0;
+        li::before {
+            content: '\f054';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            top: 2px;
+            color: var(--accent);
+            font-size: 12px;
         }
         
-        .price-table th, .price-table td {
-            padding: 0.8rem;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
+        .price-section {
+            margin: 40px 0;
+            padding: 25px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.8), rgba(236, 240, 241, 0.8));
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: var(--transition);
         }
         
-        .price-table th {
-            background-color: #2c3e50;
-            color: white;
-        }
-        
-        .price-table tr:nth-child(even) {
-            background-color: #f2f2f2;
+        .price-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
         }
         
         .price-total {
-            font-weight: bold;
-            font-size: 1.2rem;
-            color: #e67e22;
-        }
-        
-        /* Summary Cards */
-        .summary-cards {
+            font-weight: 700;
+            font-size: 24px;
+            margin-top: 15px;
+            color: var(--primary);
             display: flex;
-            flex-wrap: wrap;
-            gap: 1.5rem;
-            margin: 1.5rem 0;
-        }
-        
-        .summary-card {
-            flex: 1;
-            min-width: 250px;
-            background-color: #f8f9fa;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px 20px;
+            background: rgba(255, 255, 255, 0.9);
             border-radius: 8px;
-            padding: 1.5rem;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+            animation: pulse 2s infinite;
         }
         
-        .summary-card-title {
-            color: #e67e22;
-            margin-bottom: 1rem;
-            font-size: 1.2rem;
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.02);
+            }
+            100% {
+                transform: scale(1);
+            }
         }
         
-        .summary-list {
-            list-style-type: none;
-        }
-        
-        .summary-list li {
-            margin-bottom: 0.5rem;
-            padding-left: 1.5rem;
-            position: relative;
-        }
-        
-        .summary-list li:before {
-            content: "•";
-            color: #e67e22;
-            position: absolute;
-            left: 0;
-        }
-        
-        /* Footer */
-        .footer {
-            background-color: #2c3e50;
-            color: white;
-            padding: 2rem;
-            text-align: center;
+        .price-breakdown {
+            margin-top: 25px;
         }
         
         .terms {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: left;
-            font-size: 0.9rem;
+            margin-top: 50px;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: var(--transition);
         }
         
-        .terms h3 {
-            margin: 1.5rem 0 0.5rem;
-            color: #e67e22;
+        .terms:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
         }
         
-        /* Responsive Adjustments */
+        .image-gallery {
+            display: flex;
+            gap: 15px;
+            margin: 30px 0;
+            overflow-x: auto;
+            padding: 10px 0;
+        }
+        
+        .gallery-img {
+            min-width: 200px;
+            height: 150px;
+            border-radius: 8px;
+            object-fit: cover;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .gallery-img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .print-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            border: none;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+            transition: var(--transition);
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-15px);
+            }
+            60% {
+                transform: translateY(-7px);
+            }
+        }
+        
+        .print-btn:hover {
+            transform: scale(1.1) translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+        
         @media (max-width: 768px) {
-            .activity {
+            .quotation-container {
+                padding: 25px;
+            }
+            
+            h1 {
+                font-size: 26px;
+            }
+            
+            th, td {
+                padding: 12px 15px;
+                font-size: 14px;
+            }
+            
+            .price-total {
+                font-size: 20px;
                 flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
             }
             
-            .activity-image {
-                margin-right: 0;
-                margin-bottom: 1rem;
-                flex: 0 0 auto;
-            }
-            
-            .nav-list {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .nav-item {
-                margin: 0.5rem 0;
+            .print-btn {
+                width: 50px;
+                height: 50px;
+                font-size: 18px;
+                bottom: 20px;
+                right: 20px;
             }
         }
         
-        /* Print Styles */
-        @media print {
-            .nav {
-                display: none;
+        @media (max-width: 576px) {
+            body {
+                padding: 10px;
             }
             
-            .section {
-                box-shadow: none;
-                page-break-inside: avoid;
+            .quotation-container {
+                padding: 20px;
             }
             
-            .footer {
-                page-break-before: always;
+            table {
+                display: block;
+                overflow-x: auto;
+            }
+            
+            h1 {
+                font-size: 22px;
+            }
+            
+            .intro {
+                padding: 15px;
+                font-size: 14px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Header Section -->
-    <header class="header">
-        <div class="header-content">
-            <img src="https://via.placeholder.com/200x100?text=Safari+Company+Logo" alt="Safari Company Logo" class="logo">
-            <h1>Your Safari Adventure Awaits</h1>
-            <p>Experience the wild beauty of Africa with our carefully crafted itinerary designed to give you the ultimate safari experience. From breathtaking game drives to luxurious accommodations, every detail has been considered.</p>
+    <div class="quotation-container">
+        <h1><i class="fas fa-safari"></i> SAFARI ITINERARY QUOTATION</h1>
+        
+        <div class="intro">
+            Welcome to your safari adventure! Below is your personalized itinerary with a day-by-day overview of your trip. Please review the details and let us know if you have any questions.
         </div>
-    </header>
-    
-    <!-- Navigation -->
-    <nav class="nav">
-        <ul class="nav-list">
-            <li class="nav-item"><a href="#itinerary" class="nav-link">Itinerary</a></li>
-            <li class="nav-item"><a href="#summary" class="nav-link">Trip Summary</a></li>
-            <li class="nav-item"><a href="#pricing" class="nav-link">Pricing</a></li>
-            <li class="nav-item"><a href="#terms" class="nav-link">Terms</a></li>
-        </ul>
-    </nav>
-    
-    <!-- Main Content -->
-    <div class="container">
-        <!-- Itinerary Section -->
-        <section id="itinerary" class="section">
-            <h2 class="section-title">Detailed Itinerary</h2>
-            
-            <!-- Day 1 -->
-            <div class="day">
-                <h3 class="day-title">Day 1: Arrival in Nairobi</h3>
-                <p class="day-description">Upon arrival at Jomo Kenyatta International Airport, you'll be met by our representative and transferred to your hotel. After check-in, enjoy some leisure time to relax before your welcome dinner this evening.</p>
-                
-                <!-- Airport Transfer Activity -->
-                <div class="activity">
-                    <div class="activity-image">
-                        <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Airport Transfer">
-                    </div>
-                    <div class="activity-content">
-                        <span class="activity-type">Airport Transfer</span>
-                        <h4 class="activity-title">Jomo Kenyatta International Airport to Nairobi Hotel</h4>
-                        <p>Our driver will meet you at arrivals with a sign bearing your name. The transfer takes approximately 30-45 minutes depending on traffic. Bottled water will be provided in the vehicle.</p>
-                    </div>
-                </div>
-                
-                <!-- Accommodation Activity -->
-                <div class="activity">
-                    <div class="activity-image">
-                        <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Nairobi Hotel">
-                    </div>
-                    <div class="activity-content">
-                        <span class="activity-type">Accommodation</span>
-                        <h4 class="activity-title">The Safari Hotel, Nairobi</h4>
-                        <p>A luxurious 5-star hotel located in the heart of Nairobi. Enjoy premium amenities including a spa, swimming pool, and fine dining restaurants. Your deluxe room features a king-size bed, en-suite bathroom, and panoramic city views.</p>
-                        <p><strong>Meals Included:</strong> Dinner</p>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Day 2 -->
-            <div class="day">
-                <h3 class="day-title">Day 2: Nairobi to Maasai Mara</h3>
-                <p class="day-description">After an early breakfast, transfer to Wilson Airport for your scheduled flight to the Maasai Mara. Upon arrival, enjoy a game drive en route to your luxury tented camp where you'll spend the next three nights.</p>
-                
-                <!-- Flight Activity -->
-                <div class="activity">
-                    <div class="activity-image">
-                        <img src="https://images.unsplash.com/photo-1556388155-9d0ed6ba7f16?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Domestic Flight">
-                    </div>
-                    <div class="activity-content">
-                        <span class="activity-type">Domestic Flight</span>
-                        <h4 class="activity-title">Nairobi Wilson Airport to Maasai Mara</h4>
-                        <p>Scheduled flight departing at 10:00 AM with a flight duration of approximately 45 minutes. Small aircraft with maximum 12 passengers. Weight restrictions apply (15kg checked baggage + 5kg hand luggage).</p>
-                    </div>
-                </div>
-                
-                <!-- Game Drive Activity -->
-                <div class="activity">
-                    <div class="activity-image">
-                        <img src="https://images.unsplash.com/photo-1509087859087-a384654eca4d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Game Drive">
-                    </div>
-                    <div class="activity-content">
-                        <span class="activity-type">Game Drive</span>
-                        <h4 class="activity-title">Maasai Mara Game Drive</h4>
-                        <p>Your first game drive in the famous Maasai Mara National Reserve. Look out for the Big Five (lion, leopard, rhino, elephant, and buffalo) as well as countless other species. Your expert guide will share insights about the ecosystem and wildlife behavior.</p>
-                    </div>
-                </div>
-                
-                <!-- Accommodation Activity -->
-                <div class="activity">
-                    <div class="activity-image">
-                        <img src="https://images.unsplash.com/photo-1589927986089-35812388d1f4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Luxury Tented Camp">
-                    </div>
-                    <div class="activity-content">
-                        <span class="activity-type">Accommodation</span>
-                        <h4 class="activity-title">Mara Luxury Tented Camp</h4>
-                        <p>Experience authentic safari living without compromising on comfort in our luxury tents. Each tent features en-suite bathrooms with hot showers, comfortable beds, and private verandas overlooking the Mara River. The camp offers excellent dining and a swimming pool to relax after game drives.</p>
-                        <p><strong>Meals Included:</strong> Breakfast, Lunch, Dinner</p>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Day 3 -->
-            <div class="day">
-                <h3 class="day-title">Day 3: Full Day in Maasai Mara</h3>
-                <p class="day-description">Today is dedicated to exploring the vast plains of the Maasai Mara with morning and afternoon game drives. Optional activities include a visit to a Maasai village or a hot air balloon safari (at additional cost).</p>
-                
-                <!-- Game Drive Activity -->
-                <div class="activity">
-                    <div class="activity-image">
-                        <img src="https://images.unsplash.com/photo-1523805009345-7448845a9e53?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Morning Game Drive">
-                    </div>
-                    <div class="activity-content">
-                        <span class="activity-type">Game Drive</span>
-                        <h4 class="activity-title">Morning Game Drive</h4>
-                        <p>Depart at dawn when animals are most active. Your guide will take you to prime locations for spotting predators on the hunt. Enjoy a bush breakfast at a scenic viewpoint before continuing your exploration of the reserve.</p>
-                    </div>
-                </div>
-                
-                <!-- Optional Activity -->
-                <div class="activity">
-                    <div class="activity-image">
-                        <img src="https://images.unsplash.com/photo-1590845947676-fa2576f401d4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Maasai Village Visit">
-                    </div>
-                    <div class="activity-content">
-                        <span class="activity-type">Optional Excursion</span>
-                        <h4 class="activity-title">Maasai Village Visit</h4>
-                        <p>Experience the rich culture of the Maasai people with a visit to a traditional village. Learn about their customs, traditions, and way of life. Participate in traditional dances and see how they make fire using sticks. This excursion is available at an additional cost of $50 per person.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
         
-        <!-- Trip Summary Section -->
-        <section id="summary" class="section">
-            <h2 class="section-title">Trip Summary</h2>
-            
-            <div class="summary-cards">
-                <div class="summary-card">
-                    <h3 class="summary-card-title">Places You'll Visit</h3>
-                    <ul class="summary-list">
-                        <li>Nairobi - Kenya's vibrant capital city</li>
-                        <li>Maasai Mara National Reserve - World-famous wildlife sanctuary</li>
-                        <li>Mara River - Witness the Great Migration crossing point</li>
-                        <li>Maasai Village - Cultural immersion experience</li>
-                    </ul>
-                </div>
-                
-                <div class="summary-card">
-                    <h3 class="summary-card-title">Accommodations</h3>
-                    <ul class="summary-list">
-                        <li>The Safari Hotel, Nairobi (1 night)</li>
-                        <li>Mara Luxury Tented Camp (3 nights)</li>
-                        <li>All accommodations rated 4-5 stars</li>
-                        <li>All rooms with en-suite facilities</li>
-                    </ul>
-                </div>
-                
-                <div class="summary-card">
-                    <h3 class="summary-card-title">Activities Included</h3>
-                    <ul class="summary-list">
-                        <li>4 Game drives in Maasai Mara</li>
-                        <li>All park entry fees</li>
-                        <li>Domestic flights as specified</li>
-                        <li>All transfers in private vehicles</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
+        <div class="image-gallery">
+            <img src="https://images.unsplash.com/photo-1509316785289-025f5b846b35?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Safari Landscape" class="gallery-img">
+            <img src="https://images.unsplash.com/photo-1523805009345-7448845a9e53?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Wild Animals" class="gallery-img">
+            <img src="https://images.unsplash.com/photo-1589927986089-35812388d1f4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Safari Camp" class="gallery-img">
+            <img src="https://images.unsplash.com/photo-1509087859087-a384654eca4d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Game Drive" class="gallery-img">
+        </div>
         
-        <!-- Pricing Section -->
-        <section id="pricing" class="section">
-            <h2 class="section-title">Pricing Details</h2>
-            
-            <table class="price-table">
-                <thead>
-                    <tr>
-                        <th>Item</th>
-                        <th>Description</th>
-                        <th>Price per Person</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Accommodation</td>
-                        <td>4 nights in specified hotels/lodges</td>
-                        <td>$1,200</td>
-                    </tr>
-                    <tr>
-                        <td>Meals</td>
-                        <td>All meals as specified in itinerary</td>
-                        <td>$350</td>
-                    </tr>
-                    <tr>
-                        <td>Transport</td>
-                        <td>All ground transfers and domestic flights</td>
-                        <td>$600</td>
-                    </tr>
-                    <tr>
-                        <td>Activities</td>
-                        <td>Game drives and park entry fees</td>
-                        <td>$450</td>
-                    </tr>
-                    <tr>
-                        <td>Guide Services</td>
-                        <td>Professional driver/guide throughout</td>
-                        <td>$300</td>
-                    </tr>
-                    <tr class="price-total">
-                        <td colspan="2">Total Price per Person</td>
-                        <td>$2,900</td>
-                    </tr>
-                </tbody>
-            </table>
-            
-            <p><strong>Single Supplement:</strong> $450 (for single room occupancy)</p>
-            <p><strong>Child Policy:</strong> Children under 12 sharing with adults receive 30% discount</p>
-            <p><strong>Deposit Required:</strong> 30% of total to confirm booking</p>
-        </section>
+        <table>
+            <thead>
+                <tr>
+                    <th>OVERVIEW</th>
+                    <th>ITINERARY</th>
+                    <th>PRICE</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><h2><i class="fas fa-calendar-day"></i> DAY 1</h2></td>
+                    <td>
+                        <div class="day-section">
+                            <div class="day-title"><i class="fas fa-sun"></i> DAY 1</div>
+                            <ul>
+                                <li>DJ/ x Mil wake early</li>
+                                <li>after breakfast</li>
+                                <li>Game drives</li>
+                            </ul>
+                        </div>
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><h2><i class="fas fa-calendar-day"></i> DAY 2</h2></td>
+                    <td>
+                        <div class="day-section">
+                            <ul>
+                                <li>Ambosell Lodge</li>
+                                <li>Game drives</li>
+                            </ul>
+                        </div>
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><h2><i class="fas fa-route"></i> ITINERARY</h2></td>
+                    <td>
+                        <div class="day-section">
+                            <p>Wake up early, after breakfast head out for a game drive for 4 hours, then after lunch drive to the airport, and take a 12/14 flight to Mombasa, it's a short transfer to the hotel when you can relax on the beach.</p>
+                        </div>
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><h2><i class="fas fa-tags"></i> PRICE</h2></td>
+                    <td>
+                        <div class="price-section">
+                            <div class="price-total">
+                                <span>Total Price:</span>
+                                <span>$3,500</span>
+                            </div>
+                        </div>
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><h2><i class="fas fa-receipt"></i> PRICE BREAKDOWN</h2></td>
+                    <td>
+                        <div class="price-breakdown">
+                            <ul>
+                                <li>Accommodation</li>
+                                <li>Activities</li>
+                                <li>Transport</li>
+                                <li>Taxes and fees</li>
+                            </ul>
+                        </div>
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td><h2><i class="fas fa-list-check"></i> ITINERARY</h2></td>
+                    <td>
+                        <ul>
+                            <li>ACCOMMODATION</li>
+                            <li>SAFARI GAME-DRIVE</li>
+                            <li>AIRPORT</li>
+                            <li>TERMS AND CONDITIONS</li>
+                        </ul>
+                    </td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </table>
         
-        <!-- Terms Section -->
-        <section id="terms" class="section">
-            <h2 class="section-title">Terms & Conditions</h2>
-            
-            <div class="terms">
-                <h3>Booking Conditions</h3>
-                <p>A 30% deposit is required to confirm your booking. The balance is due 60 days prior to departure. For bookings made within 60 days of departure, full payment is required immediately.</p>
-                
-                <h3>Cancellation Policy</h3>
-                <p>Cancellations received more than 60 days prior to departure will forfeit the deposit. Cancellations between 60-30 days prior will incur a 50% penalty. Cancellations within 30 days will receive no refund.</p>
-                
-                <h3>Travel Insurance</h3>
-                <p>We strongly recommend comprehensive travel insurance covering medical expenses, personal accident, loss of belongings, and trip cancellation.</p>
-                
-                <h3>Health Requirements</h3>
-                <p>Yellow fever vaccination is required for entry into Kenya. Malaria prophylaxis is recommended. Consult your doctor for other recommended vaccinations.</p>
-                
-                <h3>Visa Requirements</h3>
-                <p>Most nationalities require a visa for Kenya, which can be obtained online prior to travel or on arrival. Passports must be valid for at least 6 months beyond your travel dates.</p>
-                
-                <h3>Responsibility</h3>
-                <p>While we take every care to ensure your safety, we cannot be held responsible for loss or damage to personal belongings, delays, or changes due to circumstances beyond our control.</p>
-            </div>
-        </section>
+        <div class="terms">
+            <h2><i class="fas fa-file-contract"></i> TERMS AND CONDITIONS</h2>
+            <p>All prices are subject to change without prior notice. Bookings require a 30% deposit. Cancellation policy applies. Travel insurance recommended.</p>
+        </div>
     </div>
     
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <p>Thank you for considering our safari package. We look forward to welcoming you to Africa!</p>
-            <p>For any questions or to book this itinerary, please contact our safari specialists at <strong>info@safarico.com</strong> or call <strong>+254 700 123456</strong>.</p>
-            <p>&copy; 2025 Safari Adventures. All rights reserved.</p>
-        </div>
-    </footer>
+    <button class="print-btn" onclick="window.print()">
+        <i class="fas fa-print"></i>
+    </button>
     
     <script>
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-                
-                window.scrollTo({
-                    top: targetElement.offsetTop - 20,
-                    behavior: 'smooth'
-                });
-                
-                // Update URL without page reload
-                history.pushState(null, null, targetId);
+        document.addEventListener('DOMContentLoaded', function() {
+            const galleryImages = document.querySelectorAll('.gallery-img');
+            let currentIndex = 0;
+            
+            function rotateGallery() {
+                galleryImages[currentIndex].style.transform = 'scale(0.95)';
+                currentIndex = (currentIndex + 1) % galleryImages.length;
+                galleryImages[currentIndex].style.transform = 'scale(1.1)';
+            }
+            
+            setInterval(rotateGallery, 3000);
+            
+            const tableRows = document.querySelectorAll('tbody tr');
+            tableRows.forEach((row, index) => {
+                row.style.transitionDelay = `${index * 0.1}s`;
+            });
+            
+            document.querySelector('.quotation-container').addEventListener('mousemove', (e) => {
+                const x = e.clientX / window.innerWidth;
+                const y = e.clientY / window.innerHeight;
+                document.querySelector('.quotation-container').style.boxShadow = 
+                    `${10 * x}px ${10 * y}px 30px rgba(0, 0, 0, 0.2)`;
             });
         });
-        
-        // Print button functionality
-        function addPrintButton() {
-            const printBtn = document.createElement('button');
-            printBtn.textContent = 'Print Itinerary';
-            printBtn.style.cssText = `
-                position: fixed;
-                bottom: 20px;
-                right: 20px;
-                padding: 10px 20px;
-                background-color: #e67e22;
-                color: white;
-                border: none;
-                border-radius: 4px;
-                cursor: pointer;
-                z-index: 99;
-                box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-            `;
-            
-            printBtn.addEventListener('click', () => {
-                window.print();
-            });
-            
-            document.body.appendChild(printBtn);
-        }
-        
-        // Initialize when DOM is loaded
-        document.addEventListener('DOMContentLoaded', addPrintButton);
     </script>
 </body>
 </html>
